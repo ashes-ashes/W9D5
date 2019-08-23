@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\nwindow.$1 = function(thing) {\n  let res;\n  // console.log(\"hi\");\n  if (typeof thing === \"string\") {\n    // console.log(\"hello\");\n    let res2 = this.document.querySelectorAll(thing);\n    res = Array.from(res2);\n  }\n  return res;\n};\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
