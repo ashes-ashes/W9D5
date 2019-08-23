@@ -91,4 +91,24 @@ export default class DOMNodeCollection {
     });
   }
 
+  each(cb) {
+    this.eles.forEach((el) => {
+      cb(el);
+    });
+  }
+
+  //---Event Handling---//
+
+  on(string, cb) {
+    this.eles.forEach((el) => {
+      el.addEventListener(string, cb);
+    });
+  }
+
+  off(string, cb) {
+    this.eles.forEach((el) => {
+      el.removeEventListener(string, cb);
+    });
+  }
+
 }
