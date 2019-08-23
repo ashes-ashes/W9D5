@@ -86,14 +86,27 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/dom_node_collection.js":
+/*!************************************!*\
+  !*** ./src/dom_node_collection.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return DOMNodeCollection; });\n\nclass DOMNodeCollection {\n  constructor(eles) {\n    this.eles = eles;\n  }\n\n  html(string) {\n    if (string === undefined) {\n      return this.eles[0].innerHTML;\n    } else {\n      this.eles.forEach((el) => {\n        el.innerHTML = string;\n      });\n    }\n  }\n\n  empty() {\n    this.html(\"\");\n  }\n\n  append(arg) {\n    if (arg instanceof HTMLElement) {\n      this.eles.forEach( (el) => {\n        el.innerHTML += arg.outerHTML;\n      });\n    } else if (typeof arg === \"string\") {\n      this.eles.forEach( (el) => {\n        el.innerHTML += arg;\n      });\n    } else if (arg instanceof DOMNodeCollection) {\n      this.eles.forEach((el) => {\n        arg.eles.forEach((argel => {\n          el.innerHTML += argel.outerHTML;\n        }));\n      });\n    }\n  }\n\n  attr(att, val) {\n    if (val === undefined) {\n      console.log(\"meep\");\n      return this.eles[0].getAttribute(att);\n    } else {\n      this.eles.forEach( (el) => {\n        el.setAttribute(att, val);\n      });\n    }\n  }\n\n  addClass(val) {\n    this.eles.forEach( (el) => {\n      el.classList.add(val);\n    });\n  }\n\n  removeClass(val) {\n    this.eles.forEach( (el) => {\n      el.classList.remove(val);\n    });\n  }\n\n  // --- Traversal --- //\n  \n\n}\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("\nwindow.$1 = function(thing) {\n  let res;\n  // console.log(\"hi\");\n  if (typeof thing === \"string\") {\n    // console.log(\"hello\");\n    let res2 = this.document.querySelectorAll(thing);\n    res = Array.from(res2);\n  }\n  return res;\n};\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dom_node_collection_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom_node_collection.js */ \"./src/dom_node_collection.js\");\n\n\nwindow.$1 = function(thing) {\n  let res;\n  // console.log(\"hi\");\n  if (typeof thing === \"string\") {\n    // console.log(\"hello\");\n    let res2 = window.document.querySelectorAll(thing);\n    res = Array.from(res2);\n  } else if (thing instanceof HTMLElement) {\n    res = Array.from(thing);\n  }\n  return new _dom_node_collection_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](res);\n};\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
