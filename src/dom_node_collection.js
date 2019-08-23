@@ -60,6 +60,35 @@ export default class DOMNodeCollection {
   }
 
   // --- Traversal --- //
-  
+
+  children() {
+    let childs = [];
+    this.eles.forEach( (el) => {
+      childs = childs.concat(el.children);
+    });
+    return new DOMNodeCollection(childs);
+  }
+
+  parent() {
+    let parents = [];
+    this.eles.forEach( (el) => {
+      parents = parents.concat(el.parentElement);
+    });
+    return new DOMNodeCollection(parents);
+  }
+
+  find(selector) {
+    let matches = [];
+    this.eles.forEach( (el) => {
+      matches = matches.concat(el.querySelectorAll(selector));
+    });
+    return new DOMNodeCollection(matches);
+  }
+
+  remove(selector) {
+    this.eles.forEach((el) => {
+      el.parentNode.removeChild(el);
+    });
+  }
 
 }
